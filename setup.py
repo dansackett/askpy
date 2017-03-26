@@ -44,13 +44,14 @@ tests_require = ['pytest>=2.8.0']
 if not version:
     raise RuntimeError('Cannot find version information')
 
-with open('README.md', 'r', 'utf-8') as f:
+with open('README.rst', 'r', 'utf-8') as f:
     readme = f.read()
 
 setup(
     name='askpy',
     version=version,
     description='Python user input prompt toolkit',
+    long_description=readme,
     author='Dan Sackett',
     author_email='danesackett@gmail.com',
     url='https://github.com/dansackett/askpy',

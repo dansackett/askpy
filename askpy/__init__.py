@@ -5,7 +5,7 @@ Describe here...
 """
 
 __title__ = 'askpy'
-__version__ = '0.0.2'
+__version__ = '0.0.4'
 __author__ = 'Dan Sackett'
 
 from .prompt import Prompt
