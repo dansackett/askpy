@@ -1,1 +1,5 @@
 .cache/
+askpy.egg-info/
+build/
+dist/
+askpy/askpy/

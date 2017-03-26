@@ -9,6 +9,9 @@ from codecs import open
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
 
+with open('askpy/__init__.py', 'r') as fd:
+    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
+                        fd.read(), re.MULTILINE).group(1)
 if sys.argv[-1] == 'tag':
     os.system("git tag -a %s -m 'version %s'" % (version, version))
     os.system("git push --tags")
@@ -38,14 +41,10 @@ class PyTest(TestCommand):
 
 tests_require = ['pytest>=2.8.0']
 
-with open('../askpy/askpy/__init__.py', 'r') as fd:
-    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
-                        fd.read(), re.MULTILINE).group(1)
-
 if not version:
     raise RuntimeError('Cannot find version information')
 
-with open('../askpy/README.md', 'r', 'utf-8') as f:
+with open('README.md', 'r', 'utf-8') as f:
     readme = f.read()
 
 setup(
@@ -57,13 +56,13 @@ setup(
     url='https://github.com/dansackett/askpy',
     packages=['askpy'],
     package_data={'': ['LICENSE']},
-    package_dir={'askpy': '../askpy/askpy'},
+    package_dir={'askpy': 'askpy'},
     include_package_data=True,
     tests_require=tests_require,
     cmdclass={'test': PyTest},
     license='MIT',
     zip_safe=False,
-    classifiers=(
+    classifiers=[
         'Intended Audience :: Developers',
         'Natural Language :: English',
         'Programming Language :: Python',
@@ -74,5 +73,5 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6'
-    )
+    ]
 )
